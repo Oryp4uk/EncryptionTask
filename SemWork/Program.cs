@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace SemWork
 {
     class Program
@@ -9,20 +8,19 @@ namespace SemWork
         {
             bool encrypt = false;
             Console.WriteLine("Выберите вид работы \n 1 - Зашифровать слово\n 2 - Расшифровать слово");
-            var method = Console.ReadKey();
-            switch (method.KeyChar)
+            var method = Console.ReadLine();
+            switch (method)
             {
-                case '1':
+                case "1":
                     encrypt = true;
                     break;
-                case '2':
+                case "2":
                     encrypt = false;
                     break;
                 default:
                     Console.WriteLine("\nВыбран неправильный вид работы");
                     return;
             }
-
             Console.WriteLine("\nВведите слово");
             string msg = Console.ReadLine();
             Console.WriteLine("\nВведите ключ");
@@ -30,7 +28,7 @@ namespace SemWork
 
             if (encrypt)
             {
-                Console.WriteLine("Выберите тип шифрования \n 1 - Шифр Цезаря\n 2 - Шифр Виженера\n 3 - XOR-шифр\n 4 - RSA");
+                Console.WriteLine("Выберите тип шифрования \n 1 - Шифр Цезаря\n 2 - Шифр Виженера\n 3 - XOR-шифр");
                 switch (Console.ReadLine())
                 {
                     case "1":
@@ -45,10 +43,6 @@ namespace SemWork
                         Console.WriteLine("\nРезультат: ");
                         Console.WriteLine(XORCipher.Encrypt(msg, key));
                         break;
-                    case "4":
-                        Console.WriteLine("\nРезультат: ");
-                        //
-                        break;
                     default:
                         Console.WriteLine("Выбран неправильный тип шифрования");
                         return;
@@ -56,7 +50,7 @@ namespace SemWork
             }
             else
             {
-                Console.WriteLine("Выберите тип дешифрования \n 1 - Шифр Цезаря\n 2 - Шифр Виженера\n 3 - XOR-шифр\n 4 - RSA");
+                Console.WriteLine("Выберите тип дешифрования \n 1 - Шифр Цезаря\n 2 - Шифр Виженера\n 3 - XOR-шифр");
                 switch (Console.ReadLine())
                 {
                     case "1":
@@ -70,10 +64,6 @@ namespace SemWork
                     case "3":
                         Console.WriteLine("\nРезультат: ");
                         Console.WriteLine(XORCipher.Decrypt(msg, key));
-                        break;
-                    case "4":
-                        Console.WriteLine("\nРезультат: ");
-                        
                         break;
                     default:
                         Console.WriteLine("Выбран неправильный тип дешифрования");
@@ -183,9 +173,7 @@ namespace SemWork
             for (int i = 0; i < msg.Length; i+=3)
             {
                 if (msg[i] == ' ')
-                {
                     continue;
-                }
                 else
                 {
                     byte code = Convert.ToByte(msg.Substring(i, 2));
